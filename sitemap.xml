@@ -2,16 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <!-- replace WEBSITE with the address where this site is being hosted -->
    <url>
-       <loc>WEBSITE</loc>
+       <loc>daniellecgw.github.io/jreconhist</loc>
    </url>
    <url>
-       <loc>WEBSITE/registration</loc>
+       <loc>daniellecgw.github.io/jreconhist/registration</loc>
    </url>
    <url>
-       <loc>WEBSITE/program</loc>
+       <loc>daniellecgw.github.io/jreconhist/program</loc>
    </url>
    <url>
-       <loc>WEBSITE/directions</loc>
+       <loc>daniellecgw.github.io/jreconhist/directions</loc>
    </url>
 </urlset> 
 
