@@ -9,7 +9,9 @@
  * edit the CONFERENCE object there, not the HTML.
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap');
+/* Ultra and Slabo 27px both ship a single weight (400) and no italic, so bold
+ * and italic anywhere on the site are synthesised by the browser. */
+@import url('https://fonts.googleapis.com/css2?family=Ultra&family=Slabo+27px&display=swap');
 
 :root{
     /* Palette. The three brights are FILL colors: put Shadow Grey text on them,
@@ -29,8 +31,8 @@
 
     --rule:       var(--aqua);
 
-    --display: 'Anton', 'Arial Narrow', sans-serif;
-    --body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --display: 'Ultra', 'Rockwell', Georgia, serif;
+    --body: 'Slabo 27px', 'Rockwell', Georgia, serif;
 
     --maxw: 1240px;   /* masthead and hero */
     --readw: 860px;   /* body copy and program tables */
@@ -196,8 +198,10 @@ sub{ vertical-align: sub;   font-size: 0.75em; line-height: 0; }
     font-weight: 400;
     color: var(--ink);
     text-transform: uppercase;
-    line-height: 0.86;   /* tight, but the per-line sizes vary so don't let them collide */
-    letter-spacing: -0.005em;
+    /* Ultra's caps sit shorter in the em than a condensed face, so it needs a
+     * tighter line-height than Anton did to keep the block reading as a slab. */
+    line-height: 0.78;
+    letter-spacing: 0;
 }
 
 /* Each line is scaled by site.js to fill the container width. */
@@ -318,6 +322,19 @@ table{
 }
 th, td{ text-align: left; }
 
+/* Sits in the gap between two consecutive talks and stands in for the ten
+ * minutes between them, so it carries no time of its own -- the gap is the
+ * time. Indented to the title column so it reads down the same edge. */
+p.interlude{
+    margin-bottom: 0;
+    padding: 9px 0 9px 148px;
+    font-size: 0.78rem;
+    line-height: 1;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+}
+
 td.date{
     width: 148px;
     white-space: nowrap;
@@ -428,4 +445,7 @@ td.sponsor img, td.flyer img{ max-width: 100%; height: auto; }
     td.title, td.title-special, td.speaker, td.abstract{ display: block; padding-left: 0; }
     td.title{ padding-top: 0; }
     tr{ display: block; }
+
+    /* The time column collapses here, so the interlude loses its indent too. */
+    p.interlude{ padding-left: 0; }
 }

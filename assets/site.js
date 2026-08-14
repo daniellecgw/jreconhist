@@ -20,14 +20,14 @@ const CONFERENCE = {
     /* The oversized display type on the home page, one array entry per line.
      * Each line is auto-scaled to the same width, so short lines get bigger
      * type -- aim for lines of roughly similar length. */
-    heroLines: ['Junior', 'Economic', 'History'],
+    heroLines: ['Junior', 'Economic', 'History', 'Conference'],
 
     /* How much of the page width the hero lines span, 0-1. Lower = smaller type.
      * They stay flush with each other either way. */
     heroFill: 0.6,
 
     /* Bottom-left block under the hero. */
-    taglineLines: ['Conference for', 'Early-Career Research'],
+    taglineLines: ['A workshop for', 'Early-Career Research'],
     city: 'Rhodes College, Memphis',
 
     /* The circular date badge, and the long-form date used in the footer. */
@@ -39,14 +39,14 @@ const CONFERENCE = {
     logoText: 'JEHC',
 
     /* The pill button in the masthead. Set to null to hide it. */
-    cta: { label: 'Registration', href: 'registration' },
+    cta: { label: 'Submit', href: 'https://forms.gle/HFXv2J4KR9EiaqzDA' },
 
     /* Site navigation, in order. `id` is what a page puts in data-page.
-     * `topbar: false` keeps a page out of the thin strip (used for the CTA
-     * page, which already has the pill button). */
+     * `topbar: false` keeps a page out of the thin strip -- only use it for a
+     * page the pill button already links to, or the page becomes unreachable. */
     pages: [
         { id: 'home',         label: 'Home',            href: '.',            title: 'Conference Home Page' },
-        { id: 'registration', label: 'Registration',    href: 'registration', title: 'Register for the Conference', topbar: false },
+        { id: 'registration', label: 'Registration',    href: 'registration', title: 'Register for the Conference' },
         { id: 'program',      label: 'Program',         href: 'program',      title: 'Conference Program' },
         { id: 'directions',   label: 'Directions',      href: 'directions',   title: 'Directions to the Conference' },
         { id: 'flyer',        label: 'Call for Papers', href: 'flyer',        title: 'Call for Papers' },
