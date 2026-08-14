@@ -42,11 +42,16 @@ const CONFERENCE = {
     cta: { label: 'Submit', href: 'https://forms.gle/HFXv2J4KR9EiaqzDA' },
 
     /* Site navigation, in order. `id` is what a page puts in data-page.
-     * `topbar: false` keeps a page out of the thin strip -- only use it for a
-     * page the pill button already links to, or the page becomes unreachable. */
+     *
+     * `topbar: false` keeps a page out of the thin strip but leaves it in the
+     * mobile menu -- only use it for a page the pill button already links to.
+     *
+     * `hidden: true` drops a page from both, so it is reachable only by direct
+     * URL. Keep the entry: the page still reads its own heading and <title>
+     * from here. Remember to pull it from sitemap.xml too. */
     pages: [
         { id: 'home',         label: 'Home',            href: '.',            title: 'Conference Home Page' },
-        { id: 'registration', label: 'Registration',    href: 'registration', title: 'Register for the Conference' },
+        { id: 'registration', label: 'Registration',    href: 'registration', title: 'Register for the Conference', hidden: true },
         { id: 'program',      label: 'Program',         href: 'program',      title: 'Conference Program' },
         { id: 'directions',   label: 'Directions',      href: 'directions',   title: 'Directions to the Conference' },
         { id: 'flyer',        label: 'Call for Papers', href: 'flyer',        title: 'Call for Papers' },
@@ -82,7 +87,7 @@ function renderSiteHeader() {
     const topbar = `
     <div class="topbar">
         <nav class="topbar-inner" aria-label="Primary">
-            ${CONFERENCE.pages.filter(p => p.topbar !== false).map(p => link(p, '')).join('\n            ')}
+            ${CONFERENCE.pages.filter(p => p.topbar !== false && !p.hidden).map(p => link(p, '')).join('\n            ')}
         </nav>
     </div>`;
 
@@ -101,7 +106,7 @@ function renderSiteHeader() {
         </div>
     </header>
     <nav class="drawer" id="site-drawer" aria-label="Menu">
-        ${CONFERENCE.pages.map(p => link(p, '')).join('\n        ')}
+        ${CONFERENCE.pages.filter(p => !p.hidden).map(p => link(p, '')).join('\n        ')}
     </nav>`;
 
     let hero;
