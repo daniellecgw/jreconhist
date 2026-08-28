@@ -148,6 +148,8 @@ sub{ vertical-align: sub;   font-size: 0.75em; line-height: 0; }
     transition: background 0.15s ease;
 }
 .btn-pill:hover{ background: var(--coral-deep); color: var(--ground); }
+/* `p a` underlines body links; a pill used in body copy shouldn't pick that up. */
+p a.btn-pill{ text-decoration: none; }
 
 .menu-toggle{
     display: none;   /* only needed once the top strip collapses */
@@ -269,6 +271,25 @@ sub{ vertical-align: sub;   font-size: 0.75em; line-height: 0; }
     font-size: 1.15rem;
     letter-spacing: 0.04em;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 78%, 0 100%);
+}
+
+/* Wide photo band under the home hero. Square corners to match the poster
+ * blocks above it.
+ *
+ * The crop is 16:9 rather than a narrower letterbox because the campus photo
+ * is a tall subject -- anything wider cuts the spires off the tower. Anchored
+ * to the top for the same reason: the foreground lawn is what gets trimmed. */
+.hero-banner{
+    max-width: var(--maxw);
+    margin: 0 auto 3.2em;
+    padding: 0 var(--gutter);
+}
+.hero-banner img{
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: center top;
 }
 
 .page-hero{ padding-bottom: 8px; margin-bottom: 2.6em; }
@@ -452,6 +473,8 @@ td.sponsor img, td.flyer img{ max-width: 100%; height: auto; }
     .date-badge{ width: 190px; height: 190px; }
     .date-badge .month{ font-size: 1.4rem; }
     .date-badge .days{ font-size: 3.1rem; }
+
+    .hero-banner{ margin-bottom: 2.4em; }
 
     td.date{ width: auto; display: block; padding: 18px 0 2px; }
     td.title, td.title-special, td.speaker, td.abstract{ display: block; padding-left: 0; }

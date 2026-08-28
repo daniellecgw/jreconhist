@@ -30,6 +30,9 @@ const CONFERENCE = {
     taglineLines: ['A workshop for', 'Early-Career Research'],
     city: 'Rhodes College, Memphis',
 
+    /* Wide photo band under the hero on the home page. Set to null to hide it. */
+    bannerImage: { src: 'assets/rhodescampus.jpg', alt: 'The Rhodes College campus' },
+
     /* The circular date badge, and the long-form date used in the footer. */
     badge: { month: 'April', days: '10-11', pennant: '2027' },
     dates: 'April 10-11, 2027',
@@ -59,7 +62,8 @@ const CONFERENCE = {
 
     /* Rendered as raw HTML so it can carry links. */
     footerCredit: 'Adapted from Mike Pierce’s <a href="https://github.com/mikepierce/conference-website-template">conference website template</a>. '
-                + 'Design inspired by <a href="https://www.povbudapest.com/">POV Budapest</a>.',
+                + 'Design inspired by <a href="https://www.povbudapest.com/">POV Budapest</a>. '
+                + 'Hero image credit: Rhodes College.',
 
 };
 
@@ -134,6 +138,13 @@ function renderSiteHeader() {
             </div>
         </div>
     </section>`;
+        const banner = CONFERENCE.bannerImage;
+        if (banner) {
+            hero += `
+    <figure class="hero-banner">
+        <img src="${esc(banner.src)}" alt="${esc(banner.alt || '')}">
+    </figure>`;
+        }
     } else {
         const label = current ? current.label : '';
         hero = `
@@ -158,6 +169,28 @@ function renderSiteHeader() {
 
     const meta = document.querySelector('meta[name="description"]');
     if (meta) meta.setAttribute('content', CONFERENCE.description);
+}
+
+/* Point any [data-cta] link in a page's own content at the submission URL, so
+ * the form address lives only in CONFERENCE.cta and never gets forked into an
+ * index.html. The page keeps its own link text -- body copy usually wants
+ * something longer than the masthead pill's label.
+ *
+ *     <a class="btn-pill" data-cta>Submit a paper</a>
+ *
+ * If cta is null there is nowhere to submit, so the link is dropped rather
+ * than left dead -- along with its parent if that was all the parent held. */
+function hydrateCtaLinks() {
+    const href = CONFERENCE.cta && CONFERENCE.cta.href;
+    document.querySelectorAll('a[data-cta]').forEach(a => {
+        if (href) {
+            a.setAttribute('href', href);
+            return;
+        }
+        const parent = a.parentElement;
+        a.remove();
+        if (parent && !parent.textContent.trim() && !parent.children.length) parent.remove();
+    });
 }
 
 function renderSiteFooter() {
@@ -204,6 +237,7 @@ function fitDisplayLines() {
 
 function init() {
     renderSiteHeader();
+    hydrateCtaLinks();
     renderSiteFooter();
     fitDisplayLines();
     // Anton changes the metrics once it lands, so measure again after it loads.
