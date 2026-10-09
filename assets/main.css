@@ -415,7 +415,7 @@ td.room{
  * ---------------------------------------------------------------- */
 
 /* Embeds and figures sit on the same left edge as the readable column. */
-iframe.registration, iframe.directions, img.center{
+iframe.registration, iframe.directions, img.center, a.endorsement{
     display: block;
     margin-top: 1.5em;
     margin-bottom: 2.5em;
@@ -426,6 +426,12 @@ iframe.registration, iframe.directions, img.center{
 iframe.registration{ max-width: 700px; height: 1400px; }
 iframe.directions{ max-width: var(--readw); height: 420px; }
 img.center{ max-width: 640px; }
+
+/* Economic History Association endorsement mark. The logo is a solid maroon and
+ * grey block, not a transparent mark, so keep it small -- it reads as a badge
+ * next to the prose instead of competing with the palette. */
+a.endorsement{ width: 104px; margin-top: 0.4em; }
+a.endorsement img{ display: block; width: 100%; height: auto; }
 
 table.sponsors, table.flyers{ border-top: 0; margin-top: 2em; margin-bottom: 2em; }
 td.sponsor, td.flyer{ text-align: center; vertical-align: middle; padding: 0 14px; }
